@@ -9,7 +9,10 @@ namespace ExamManager
         private DataProcessor processor;
         const string MENU_MESSAGE = "Inserici:\n'l' per lista studenti\n" +
             "'r' per ricerca per ID\n'v' per media\n'd' per mediana" +
-            "'m' per la moda dei voti\n's' per verifiche sessiste";
+            "'m' per la moda dei voti\n's' per verifiche sessiste" +
+            "'i' per inserire uno studente" +
+            "'c' per cancellare uno studente" +
+            "'q' per uscire";
 
         public UserInterface(DataProcessor processor)
         {
@@ -41,6 +44,12 @@ namespace ExamManager
                 case 's':
                     ShowSexistCheck();
                     break;
+                case 'i':
+                    InsertStudent();
+                    break;
+                case 'c':
+                    DeleteStudent();
+                    break;
                 case 'q':
                     return;
                 default:
@@ -48,6 +57,20 @@ namespace ExamManager
                     break;
             }
             MainMenu();
+        }
+
+        private void DeleteStudent()
+        {
+            string input = ReadAnswer("Inserire [ID,nome,cognome,età,sesso,voto] del nuovo studente: ");
+            var s = input.Split(',');
+            processor.FindStudentToRemove(s);
+        }
+
+        private void InsertStudent()
+        {
+            string input = ReadAnswer("Inserire [ID,nome,cognome,età,sesso,voto] del nuovo studente: ");
+            var s = input.Split(',');
+            processor.AddNewStudent(s);
         }
 
         private void ShowSexistCheck()

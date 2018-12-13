@@ -11,6 +11,14 @@ namespace ExamManager
             @"select id, name, surname, age, gender, grade 
                     from studente";
 
+        public void AddStudent(int id, string name, string surname, int age, Sex gender, int grade)
+        {
+            // Connessione a Database
+            // 1. Stringa di connessione
+            // 2. Query (inserire in nomeDB (i dati in ordine))
+            // 3. Comando della query
+        }
+
         public IEnumerable<Student> AllStudents()
         {
 

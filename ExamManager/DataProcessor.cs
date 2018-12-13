@@ -60,6 +60,13 @@ namespace ExamManager
                 .Key;
         }
 
+        internal void FindStudentToRemove(string[] s)
+        {
+            var name = s[0];
+            var surname = s[1];
+            source.RemoveStudent(name, surname);
+        }
+
         public double GetMedian()
         {
             List<Student> r = source.AllStudents().OrderBy(s => s.Grade).ToList();
@@ -73,6 +80,18 @@ namespace ExamManager
                 median = r[r.Count / 2].Grade;
             }
             return median;
+        }
+
+        internal void AddNewStudent(string[] s)
+        {
+            var Id = int.Parse(s[0]);
+            var Name = s[1];
+            var Surname = s[2];
+            var Age = int.Parse(s[3]);
+            var Gender = Enum.Parse<Sex>(s[4]);
+            var Grade = int.Parse(s[5]);
+
+            source.AddStudent(Id, Name, Surname, Age, Gender, Grade);
         }
 
         public double GetAvg()
